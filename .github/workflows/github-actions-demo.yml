@@ -9,10 +9,13 @@ on:
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        goodby-string: [Goodbye, Ciao, Au revoir]
+
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - if: ${{ github.event_name == 'workflow_dispatch' }}
-        run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!" && exit 1
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v4
@@ -22,3 +25,4 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      - run: echo "👋 ${{ matrix.goodby-string }}!"
