@@ -26,3 +26,9 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - run: echo "👋 ${{ matrix.goodby-string }}!"
+  
+  Dependent-Job:
+    needs: Explore-GitHub-Actions
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by the completion of the Explore-GitHub-Actions job."
